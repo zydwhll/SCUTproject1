@@ -1,0 +1,33 @@
+<!-- 搜索页模板 - 医护端 -->
+<view class="container {{darkMode ? 'dark' : ''}}">
+  <!-- 搜索输入框 -->
+  <view class="search-input-wrap">
+    <input 
+      class="search-input" 
+      placeholder="请输入患者姓名模糊搜索" 
+      bindinput="onInputChange"
+      value="{{searchKey}}"
+      placeholder-class="{{darkMode ? 'placeholder-dark' : 'placeholder-light'}}"
+    />
+    <button class="search-btn" bindtap="doSearch">开始搜索</button>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+  <!-- 搜索结果为空 -->
+  <text class="empty" wx:if="{{!loading && list.length === 0 && hasSearched}}">搜索结果为空</text>
+
+  <!-- 搜索结果列表 -->
+  <view class="list-wrap" wx:if="{{!loading && list.length > 0}}">
+    <view 
+      class="list-item" 
+      wx:for="{{list}}" 
+      wx:key="_id"
+      bindtap="goToDetail"
+      data-id="{{item._id}}"
+    >
+      {{item.name}}（{{item.age}}岁）
+    </view>
+  </view>
+</view>

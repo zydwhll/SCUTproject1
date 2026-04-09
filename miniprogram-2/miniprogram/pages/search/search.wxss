@@ -1,0 +1,92 @@
+/** 搜索页样式 - 医护端 **/
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* 深色模式适配 */
+.container.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.search-input-wrap {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.search-input {
+  flex: 1;
+  height: 80rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.dark .search-input {
+  border-color: #333333;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.placeholder-light {
+  color: #999999;
+}
+
+.placeholder-dark {
+  color: #666666;
+}
+
+.search-btn {
+  width: 200rpx;
+  background-color: #1677ff;
+  color: #ffffff;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.dark .search-btn {
+  background-color: #0f5ccc;
+}
+
+.loading {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666666;
+  margin-top: 40rpx;
+}
+
+.dark .loading {
+  color: #cccccc;
+}
+
+.empty {
+  display: block;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 40rpx;
+}
+
+.dark .empty {
+  color: #666666;
+}
+
+.list-wrap {
+  margin-top: 20rpx;
+}
+
+.list-item {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 28rpx;
+  padding: 0 10rpx;
+}
+
+.dark .list-item {
+  border-bottom-color: #333333;
+}

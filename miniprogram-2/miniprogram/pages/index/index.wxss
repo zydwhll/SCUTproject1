@@ -1,0 +1,85 @@
+/** 首页样式 - 医护端 **/
+.container {
+  padding: 30rpx; /* 大页面内边距 */
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* 深色模式适配 */
+.container.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* 顶部logo区域 */
+.header {
+  text-align: center;
+  margin-bottom: 40rpx; /* 间距 */
+}
+
+/* logo图标 */
+.logo {
+  width: 180rpx; /* 图标宽度 */
+  height: auto; /* 保持宽高比，避免变形 */
+}
+
+/* 花朵图片容器：横向排列6张图片 */
+.flower-container {
+  display: flex; /* 横向布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  gap: 10rpx; /* 图片之间的间距 */
+  margin-bottom: 50rpx; /* 与下方日期的间距 */
+}
+
+/* 单张花朵图片样式 */
+.flower-img {
+  width: 60rpx; /* 花朵图片宽度 */
+  height: auto; /* 保持宽高比 */
+}
+
+/* 日期时间文本 */
+.datetime {
+  font-size: 40rpx; /* 原字体 */
+  text-align: center;
+  margin-bottom: 20rpx; /* 间距 */
+  color: #333333;
+  line-height: 50rpx; /* 行高，保证文字不拥挤 */
+}
+
+/* 深色模式下的日期时间 */
+.dark .datetime {
+  color: #eeeeee;
+}
+
+/* 祝福语文本 */
+.greeting {
+  font-size: 36rpx; /* 字体 */
+  text-align: center;
+  margin-bottom: 80rpx; /* 间距 */
+  color: #666666;
+  line-height: 30rpx; /* 行高 */
+}
+
+/* 深色模式下的祝福语 */
+.dark .greeting {
+  color: #cccccc;
+}
+
+/* 开始搜索按钮 */
+.search-btn {
+  width: 85%; 
+  margin: 0 auto;
+  display: block;
+  background-color: #1677ff;
+  color: #ffffff;
+  border-radius: 12rpx; /* 圆角 */
+  height: 100rpx; /* 按钮高度 */
+  line-height: 100rpx; /* 匹配高度，文字垂直居中 */
+  font-size: 40rpx; /* 按钮文字大小 */
+}
+
+/* 深色模式下的按钮 */
+.dark .search-btn {
+  background-color: #0f5ccc;
+}

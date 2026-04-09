@@ -1,0 +1,38 @@
+<!--pages/show-info/show-info.wxml-->
+<view class="container">
+  <view class="head_box">
+    <image src="/images/head.jpg" mode=""/>
+    <view>{{title}}</view>
+  </view>
+  <view class="sec-container">
+    <view class="title-box">
+      <view class="title">个人信息</view>
+    </view>
+    
+    <view class="info-card">
+      <!-- 新增姓名展示项 -->
+      <view class="info-item">
+        <text class="label">姓名：</text>
+        <text class="value">{{userInfo.name || '未填写'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">年龄：</text>
+        <text class="value">{{userInfo.age || '未填写'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">体重：</text>
+        <text class="value">{{userInfo.weight ? userInfo.weight + ' kg' : '未填写'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">身高：</text>
+        <text class="value">{{userInfo.height ? userInfo.height + ' cm' : '未填写'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">骨龄：</text>
+        <text class="value">{{userInfo.boneAge ? userInfo.boneAge + ' 岁' : '未填写'}}</text>
+      </view>
+      
+      <button bindtap="toEdit" class="edit-btn">修改信息</button>
+    </view>
+  </view>
+</view>

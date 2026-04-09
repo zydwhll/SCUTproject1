@@ -1,0 +1,84 @@
+.head_box{
+  display: flex;
+/*justify-content: center;*/
+  padding-top: 60rpx;
+}
+.head_box >image{
+  margin-left: 32rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.head_box >view{
+  margin-left: 15rpx;
+  font-size: 38rpx;
+  font-weight: 600;
+  line-height: 100rpx;
+}
+.sec-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  padding: 30rpx;
+  justify-content: center; /*垂直居中整个容器内容 */
+}
+
+/* 标题圆角框 */
+.title-box {
+  background-color: #fff;
+  padding: 15rpx 40rpx;
+  border-radius: 50rpx;
+  margin-bottom: 60rpx; /* 标题与卡片的距离 */
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+  position: relative;
+  top: -40rpx; /* 标题轻微上移 */
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 信息卡片（居中美化） */
+.info-card {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600rpx;
+  padding: 50rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 15rpx rgba(0,0,0,0.1);
+}
+
+.info-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 34rpx;
+  color: #666;
+  width: 180rpx; /* 固定标签宽度，对齐更整齐 */
+}
+
+.value {
+  font-size: 34rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.edit-btn {
+  width: 100%;
+  margin-top: 40rpx;
+  background-color: #07c160;
+  color: #fff;
+  padding: 15rpx 0;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+}
+

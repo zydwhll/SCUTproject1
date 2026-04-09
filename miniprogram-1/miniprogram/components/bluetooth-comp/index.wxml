@@ -1,0 +1,19 @@
+<!-- bluetooth-comp/index.wxml -->
+<view style="margin: 26rpx">
+  <!-- 移除原有开始扫描按钮，仅保留断开按钮和设备列表 -->
+  <button wx:if="{{connected}}" bindtap="closeBLEConnection">断开连接 - {{name}}</button>
+
+  <view class="devices_summary">已发现 {{devices.length}} 个外围设备：</view>
+  <view
+    wx:for="{{devices}}"
+    wx:key="index"
+    data-device-id="{{item.deviceId}}"
+    data-name="{{item.name || item.localName}}"
+    bindtap="createBLEConnection"
+    class="device_item"
+    hover-class="device_item_hover">
+    <view style="font-size: 16px; color: #333">{{item.name}}</view>
+    <view style="font-size: 10px">信号强度: {{item.RSSI}}dBm</view>
+    <view style="font-size: 10px">UUID: {{item.deviceId}}</view>
+  </view>
+</view>

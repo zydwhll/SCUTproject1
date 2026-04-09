@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/grid/grid",
+    "pages/personal-info/personal-info",
+    "pages/show-info/show-info"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#0088ff",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/grid/grid",
+        "text": "压力网格",
+        "iconPath": "images/grid.png",
+        "selectedIconPath": "images/grid-active.png"
+      },
+      {
+        "pagePath": "pages/show-info/show-info",
+        "text": "我的信息",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,196 @@
+/** 详情页样式 - 医护端 **/
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* 深色模式适配 */
+.container.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.info-card {
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.dark .info-card {
+  background-color: #2a2a2a;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #666666;
+  width: 120rpx;
+}
+
+.dark .label {
+  color: #cccccc;
+}
+
+.value {
+  color: #333333;
+  flex: 1;
+}
+
+.dark .value {
+  color: #eeeeee;
+}
+
+.history-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #333333;
+}
+
+.dark .history-title {
+  color: #ffffff;
+}
+
+.history-wrap {
+  margin-bottom: 60rpx;
+}
+
+.history-item {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  font-size: 28rpx;
+}
+
+.dark .history-item {
+  border-bottom-color: #333333;
+}
+
+.history-empty {
+  display: block;
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 60rpx;
+}
+
+.dark .history-empty {
+  color: #666666;
+}
+
+/** 治疗记录时间轴样式 **/
+.treatment-timeline {
+  margin-bottom: 60rpx;
+  padding-left: 30rpx;
+  position: relative;
+}
+
+/* 时间轴竖线 */
+.treatment-timeline::before {
+  content: '';
+  position: absolute;
+  left: 14rpx;
+  top: 0;
+  bottom: 0;
+  width: 2rpx;
+  background-color: #e5e5e5;
+}
+
+.dark .treatment-timeline::before {
+  background-color: #333333;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+/* 时间轴节点 */
+.timeline-dot {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: #00b578;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.dark .timeline-dot {
+  background-color: #009662;
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+}
+
+.dark .timeline-content {
+  background-color: #2a2a2a;
+}
+
+.timeline-count {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.dark .timeline-count {
+  color: #fff;
+}
+
+.timeline-time {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.dark .timeline-time {
+  color: #ccc;
+}
+
+.timeline-duration {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.dark .timeline-duration {
+  color: #666;
+}
+
+/* 导出Excel按钮样式 */
+.export-btn {
+  width: 80%;
+  margin: 60rpx auto 40rpx;
+  display: block;
+  background-color: #0088ff;
+  color: #ffffff;
+  border-radius: 12rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.dark .export-btn {
+  background-color: #0066cc;
+}
+
+.export-btn[loading] {
+  color: transparent;
+}

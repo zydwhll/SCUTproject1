@@ -1,0 +1,70 @@
+.head_box{
+  display: flex;
+/*justify-content: center;*/
+  padding-top: 60rpx;
+}
+.head_box >image{
+  margin-left: 32rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.head_box >view{
+  margin-left: 15rpx;
+  font-size: 38rpx;
+  font-weight: 600;
+  line-height: 100rpx;
+}
+
+.sec-container {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 整体内容居中 */
+}
+
+/* 标题圆角框样式 */
+.sec-title-box {
+  background-color: #fff;
+  padding: 15rpx 40rpx;
+  border-radius: 50rpx; /* 圆角 */
+  margin: 40rpx 0;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1); /* 轻微阴影 */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 600rpx; /* 限制表单宽度 */
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+
+label {
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+  color: #666;
+}
+
+input {
+  border: 1rpx solid #ddd;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+
+/* 按钮样式 */
+button {         
+  margin-top: 40rpx;
+  background-color: #07c160;
+  color: #fff;
+  padding: 15rpx 0;
+  border-radius: 10rpx;
+}
+

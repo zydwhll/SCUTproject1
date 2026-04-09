@@ -1,0 +1,15 @@
+/* bluetooth-comp/index.wxss */
+.devices_summary {
+  /* margin-top: 30px; */
+  padding: 10px;
+  font-size: 16px;
+}
+
+.device_item {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  color: #666;
+}
+.device_item_hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bluetooth-comp": "/components/bluetooth-comp/index"
+  },
+  "navigationBarTitleText": "首页"
+}

@@ -1,0 +1,34 @@
+
+<view class="container">
+  <view class="head_box">
+    <image src="/images/head.jpg" mode=""/>
+    <view>{{title}}</view>
+  </view>
+  <view class="sec-container">
+    <!-- 带圆角框的标题 -->
+    <view class="sec-title-box">
+      <view class="sec-title">压力传感器信息</view>
+    </view>
+    
+    <!-- 九宫格容器 -->
+    <view class="content-wrapper">
+      <view class="grid-container">
+        <view 
+          class="grid-item {{gridData2[index] === 0 ? 'green' : (gridData2[index] === 1 ? 'red' : 'blue')}}" 
+          wx:for="{{gridData1}}"  
+          wx:for-index="index"  
+          wx:key="*this"
+        >
+          {{item}}  <!-- 显示数组1的数字 -->
+        </view>
+      </view>
+    </view>
+    
+    <!-- 底部颜色说明框 -->
+    <view class="legend-box">
+      <view class="legend-item">蓝色-过松</view>
+      <view class="legend-item">绿色-合适区间</view>
+      <view class="legend-item">红色-过紧</view>
+    </view>
+  </view>
+</view>

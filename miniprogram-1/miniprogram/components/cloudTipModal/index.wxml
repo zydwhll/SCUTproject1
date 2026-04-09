@@ -1,0 +1,15 @@
+<!--miniprogram/components/cloudTipModal/index.wxml-->
+<!--  wx:if="{{showUploadTip}}" -->
+<view class="install_tip" wx:if="{{showTip}}">
+  <view class="install_tip_back"></view>
+  <view class="install_tip_detail">
+    <image class="install_tip_close" bind:tap="onClose" src="../../images/icons/close.png"/>
+    <view class="install_tip_detail_title">{{title}}</view>
+    <view class="install_tip_detail_tip">{{content}}</view>
+    <!-- 新增按钮区域 -->
+    <view class="install_tip_detail_buttons">
+      <view class="install_tip_detail_button" bindtap="onCancel">取消</view>
+      <view class="install_tip_detail_button install_tip_detail_button_primary" bindtap="onConfirm">确认</view>
+    </view>
+  </view>
+</view>

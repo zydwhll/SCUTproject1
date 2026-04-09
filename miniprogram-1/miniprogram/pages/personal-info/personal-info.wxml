@@ -1,0 +1,36 @@
+<!--pages/personal-info/personal-info.wxml-->
+<view class="container">
+  <view class="head_box">
+    <image src="/images/head.jpg" mode=""/>
+    <view>{{title}}</view>
+  </view>
+  <view class="sec-container">
+    <view class="sec-title-box">
+      <view style="font-size: 30rpx; font-weight: bold;color: #333;">个人信息</view>
+    </view>
+    <form bindsubmit="formSubmit" class="form-container">
+      <!-- 新增姓名输入项 -->
+      <view class="form-item">
+        <label>姓名</label>
+        <input name="name" placeholder="请输入姓名" />
+      </view>
+      <view class="form-item">
+        <label>年龄(岁/月)</label>
+        <input name="age" placeholder="请输入年龄" />
+      </view>
+      <view class="form-item">
+        <label>体重(kg)</label>
+        <input name="weight" placeholder="请输入体重" />
+      </view>
+      <view class="form-item">
+        <label>身高(cm)</label>
+        <input name="height" placeholder="请输入身高" />
+      </view>
+      <view class="form-item">
+        <label>骨龄(岁)</label>
+        <input name="boneAge" placeholder="请输入骨龄" />
+      </view>
+      <button form-type="submit">保存信息</button>
+    </form>
+  </view>
+</view>

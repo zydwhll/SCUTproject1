@@ -1,0 +1,28 @@
+<!-- 首页模板 - 医护端 -->
+<view class="container {{darkMode ? 'dark' : ''}}">
+  <!-- 顶部logo区域 -->
+  <view class="header">
+    <image src="/images/GWCMC.png" class="logo" mode="widthFix" />
+  </view>
+
+  
+  <!-- 日期时间展示 -->
+  <view class="datetime">{{currentDatetime}}</view>
+
+  <!-- 祝福语 -->
+  <view class="greeting">{{greetingText}}</view>
+
+  <!-- 红色方框位置：6张花朵图片横向排列 -->
+  <view class="flower-container">
+    <image 
+      src="/images/flower.png" 
+      class="flower-img" 
+      mode="widthFix" 
+      wx:for="{{6}}" 
+      wx:key="index"
+    />
+  </view>
+
+  <!-- 开始搜索按钮 -->
+  <button class="search-btn" bindtap="goToSearch">开始搜索</button>
+</view>

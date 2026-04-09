@@ -1,0 +1,46 @@
+<!-- 详情页模板 - 医护端 -->
+<view class="container {{darkMode ? 'dark' : ''}}">
+  <!-- 患者基础信息卡片 -->
+  <view class="info-card">
+    <view class="info-item">
+      <text class="label">姓名：</text>
+      <text class="value">{{detail.name}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">年龄：</text>
+      <text class="value">{{detail.age}}岁</text>
+    </view>
+    <view class="info-item">
+      <text class="label">骨龄：</text>
+      <text class="value">{{detail.boneAge}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">身高：</text>
+      <text class="value">{{detail.height}}cm</text>
+    </view>
+    <view class="info-item">
+      <text class="label">体重：</text>
+      <text class="value">{{detail.weight}}kg</text>
+    </view>
+  </view>
+
+<!-- 治疗记录时间轴 -->
+<view class="history-title" style="margin-top: 40rpx;">治疗记录</view>
+  <view class="treatment-timeline" wx:if="{{detail.timerRecords && detail.timerRecords.length > 0}}">
+    <view class="timeline-item" wx:for="{{detail.timerRecords}}" wx:key="index">
+      <!-- 时间轴节点 -->
+      <view class="timeline-dot"></view>
+      <!-- 时间轴内容 -->
+      <view class="timeline-content">
+        <view class="timeline-count">第{{item.count}}次治疗</view>
+        <view class="timeline-time">{{item.createTime}}</view>
+        <view class="timeline-duration">持续时长：{{item.duration}}分钟</view>
+      </view>
+    </view>
+  </view>
+  <text class="history-empty" wx:if="{{!detail.timerRecords || detail.timerRecords.length === 0}}">暂无治疗记录</text>
+
+
+ <!-- 导出Excel按钮 -->
+ <button class="export-btn" bindtap="onExportExcel" loading="{{exportLoading}}">导出为Excel</button>
+</view>
