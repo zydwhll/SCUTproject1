@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "bluetooth-comp": "/components/bluetooth-comp/index"
+    "bluetooth-comp": "/components/bluetooth-comp/index",
+    "battery-bar": "/components/battery-bar/index"
   },
   "navigationBarTitleText": "首页"
 }

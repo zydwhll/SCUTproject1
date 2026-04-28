@@ -1,3 +1,6 @@
+<!-- 顶部电量条 -->
+<battery-bar />
+
 <!-- 自定义计时显示条（顶部） -->
 <view class="timer-bar">
   <text class="timer-text">{{timerFormatted}}</text>

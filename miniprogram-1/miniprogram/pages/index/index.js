@@ -68,6 +68,13 @@ Page({
     try {
       wx.showLoading({ title: '保存记录中...' });
 
+      const app = getApp();
+      const pressure = app && app.globalData && app.globalData.bluetooth
+        ? app.globalData.bluetooth.pressure
+        : null;
+
+      const safePressure = typeof pressure === 'number' ? pressure : 0;
+
       // 1. 调用云函数获取用户openid
       const loginRes = await wx.cloud.callFunction({
         name: 'login',
@@ -98,7 +105,8 @@ Page({
             timerRecords: db.command.push({
               count: newCount,
               duration: timerResult.duration,
-              createTime: timerResult.createTime
+              createTime: timerResult.createTime,
+              pressure: safePressure
             })
           }
         });
@@ -110,7 +118,8 @@ Page({
             timerRecords: [{
               count: newCount,
               duration: timerResult.duration,
-              createTime: timerResult.createTime
+              createTime: timerResult.createTime,
+              pressure: safePressure
             }]
           }
         });
@@ -127,10 +136,10 @@ Page({
 
   
   onShow() {
-    // 页面显示时同步全局蓝牙状态
+    // 页面显示时同步“开关状态”（UI显示：蓝牙连接中/未连接）
     const app = getApp();
     this.setData({
-      bluetoothmode: app.globalData.bluetooth.connected
+      bluetoothmode: !!(app && app.globalData && app.globalData.bluetooth && app.globalData.bluetooth.switchOn)
     });
   },
 
@@ -141,16 +150,24 @@ Page({
     
     // 关闭开关：断开蓝牙 + 隐藏扫描按钮和设备列表
     if (!isChecked) {
-      this.setData({ 
+      const hasBluetoothGlobal = !!(app && app.globalData && app.globalData.bluetooth);
+      if (hasBluetoothGlobal) {
+        app.globalData.bluetooth.switchOn = false;
+      }
+
+      this.setData({
         bluetoothmode: false,
-        showDeviceList: false 
+        showDeviceList: false
       });
-      
-      if (app.globalData.bluetooth.connected) {
+
+      if (hasBluetoothGlobal && app.globalData.bluetooth.connected) {
         wx.closeBLEConnection({
           deviceId: app.globalData.bluetooth.deviceId,
           success: () => {
             app.globalData.bluetooth.connected = false;
+            app.globalData.bluetooth.pressure = null;
+            app.globalData.bluetooth.battery = null;
+            app.globalData.bluetooth.pressureData = [];
             wx.showToast({ title: "已断开蓝牙连接", icon: "none" });
           },
           fail: (err) => {
@@ -162,11 +179,14 @@ Page({
     } 
     // 打开开关：仅切换状态为“蓝牙连接中”，不执行扫描
     else {
+      if (app && app.globalData && app.globalData.bluetooth) {
+        app.globalData.bluetooth.switchOn = true;
+      }
       this.setData({ 
         bluetoothmode: true,
         showDeviceList: false // 初始不显示设备列表
       });
-      wx.showToast({ title: "请点击「开始扫描」查找设备", icon: "none" });
+      wx.showToast({ title: "蓝牙连接中", icon: "none" });
     }
   },
 

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "battery-bar": "/components/battery-bar/index"
+  },
   "navigationBarTitleText": "我的信息"
 }

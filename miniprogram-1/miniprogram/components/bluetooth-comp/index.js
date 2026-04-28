@@ -133,14 +133,14 @@ Component({
         deviceId,
         success: () => {
           // 更新全局连接状态
-          app.globalData.bluetooth = {
-            connected: true,
-            deviceId,
-            name,
-            serviceId: '',
-            characteristicId: '',
-            pressureData: []
-          };
+          app.globalData.bluetooth.connected = true;
+          app.globalData.bluetooth.deviceId = deviceId;
+          app.globalData.bluetooth.name = name;
+          app.globalData.bluetooth.serviceId = '';
+          app.globalData.bluetooth.characteristicId = '';
+          app.globalData.bluetooth.pressureData = [];
+          app.globalData.bluetooth.pressure = null;
+          app.globalData.bluetooth.battery = null;
           this.setData({ connected: true, name, deviceId });
           wx.showToast({ title: "连接蓝牙设备成功", icon: "none" });
           this.getBLEDeviceServices(deviceId);
@@ -196,52 +196,22 @@ Component({
         },
       });
 
-      // 监听蓝牙数据（假设收到的是9位数字数组）
+      // 监听蓝牙数据（协议：AA pressure battery 55，共4字节；非4字节直接忽略）
       wx.onBLECharacteristicValueChange(characteristic => {
-        console.log("收到原始数据（ArrayBuffer）", characteristic.value);
-  
         const uint8Array = new Uint8Array(characteristic.value);
-        
+        if (uint8Array.length !== 4) return;
+
         const HEAD = 0xAA;
         const TAIL = 0x55;
-        
-        let headIndex = -1;
-        for (let i = 0; i < uint8Array.length; i++) {
-          if (uint8Array[i] === HEAD) {
-            headIndex = i;
-            break;
-          }
-        }
-        if (headIndex === -1) {
-          console.warn("未找到包头");
-          return;
-        }
-        
-        let tailIndex = -1;
-        for (let i = headIndex + 1; i < uint8Array.length; i++) {
-          if (uint8Array[i] === TAIL) {
-            tailIndex = i;
-            break;
-          }
-        }
-        if (tailIndex === -1) {
-          console.warn("未找到包尾");
-          return;
-        }
-        
-        const validData = uint8Array.slice(headIndex + 1, tailIndex);
-        
-        if (validData.length !== 9) {
-          console.warn("有效数据长度不符，期望9字节，实际", validData.length);
-          return;
-        }
-        
-        const decimalArray = Array.from(validData).map(byte => {
-          return byte; 
-        });
-        
-        app.globalData.bluetooth.pressureData = decimalArray;
-        console.log("解析后的10进制数组：", decimalArray); 
+        if (uint8Array[0] !== HEAD || uint8Array[3] !== TAIL) return;
+
+        const pressure = uint8Array[1];
+        const battery = uint8Array[2];
+
+        app.globalData.bluetooth.pressure = pressure;
+        app.globalData.bluetooth.battery = battery;
+        // 兼容旧页面：仍然保留压力数组
+        app.globalData.bluetooth.pressureData = [pressure];
       });
     },
 
@@ -280,6 +250,9 @@ Component({
         deviceId: app.globalData.bluetooth.deviceId,
         success: () => {
           app.globalData.bluetooth.connected = false;
+          app.globalData.bluetooth.pressure = null;
+          app.globalData.bluetooth.battery = null;
+          app.globalData.bluetooth.pressureData = [];
           this.setData({ connected: false });
           wx.showToast({ title: "已断开连接", icon: "none" });
         }

@@ -47,29 +47,34 @@
   justify-content: center; /* 垂直居中 */
   align-items: center;
   width: 100%;
-  margin-top: -100rpx; /* 通过负边距上移九宫格 */
+  margin-top: 40rpx; /* 下移单色块 */
 }
 
-/* 放大后的九宫格 */
-.grid-container {
+/* 单一色块压力显示 */
+.pressure-block {
+  width: 450rpx;
+  height: 450rpx;
+  border-radius: 20rpx;
   display: flex;
-  flex-wrap: wrap;
-  width: 450rpx; /* 放大九宫格宽度 */
-  height: 450rpx; /* 放大九宫格高度 */
-  margin-bottom: 100rpx; /* 与按钮保持距离 */
-}
-
-.grid-item {
-  width: 150rpx; /* 每个格子放大 */
-  height: 150rpx;
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  border: 2rpx solid #fff;
   color: #fff;
-  font-size: 40rpx; /* 数字放大 */
-  font-weight: bold;
+  margin-bottom: 100rpx;
+  box-shadow: 0 4rpx 14rpx rgba(0, 0, 0, 0.12);
+}
+
+.pressure-value {
+  font-size: 96rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pressure-label {
+  margin-top: 16rpx;
+  font-size: 34rpx;
+  font-weight: 500;
+  opacity: 0.95;
 }
 
 .green { background-color: #4cd964; }

@@ -1,0 +1,4 @@
+<view class="battery-bar">
+  <text class="battery-text">{{displayText}}</text>
+</view>
+

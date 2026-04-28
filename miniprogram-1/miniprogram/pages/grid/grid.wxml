@@ -1,4 +1,7 @@
 
+<!-- 顶部电量条 -->
+<battery-bar />
+
 <view class="container">
   <view class="head_box">
     <image src="/images/head.jpg" mode=""/>
@@ -10,17 +13,11 @@
       <view class="sec-title">压力传感器信息</view>
     </view>
     
-    <!-- 九宫格容器 -->
+    <!-- 单一色块显示压力 -->
     <view class="content-wrapper">
-      <view class="grid-container">
-        <view 
-          class="grid-item {{gridData2[index] === 0 ? 'green' : (gridData2[index] === 1 ? 'red' : 'blue')}}" 
-          wx:for="{{gridData1}}"  
-          wx:for-index="index"  
-          wx:key="*this"
-        >
-          {{item}}  <!-- 显示数组1的数字 -->
-        </view>
+      <view class="pressure-block {{pressureColorClass}}">
+        <view class="pressure-value">{{pressureText}}</view>
+        <view class="pressure-label">压力</view>
       </view>
     </view>
     

@@ -1,4 +1,7 @@
 <!--pages/personal-info/personal-info.wxml-->
+<!-- 顶部电量条 -->
+<battery-bar />
+
 <view class="container">
   <view class="head_box">
     <image src="/images/head.jpg" mode=""/>
