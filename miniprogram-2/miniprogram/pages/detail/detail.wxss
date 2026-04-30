@@ -194,3 +194,72 @@
 .export-btn[loading] {
   color: transparent;
 }
+
+/* Pressure 样式 */
+.timeline-pressure {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* 深色模式适配 */
+.dark .timeline-pressure {
+  color: #666;
+}
+
+/* 折线图区域样式 */
+.chart-section {
+  margin: 40rpx 0;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.dark .chart-section {
+  background-color: #2a2a2a;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 400rpx;
+}
+
+/* 按钮组样式 */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 40rpx;
+  padding: 20rpx 30rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 折线图按钮样式 */
+.chart-btn {
+  flex: 1;
+  max-width: 280rpx;
+  background-color: #00b578;
+  color: #ffffff;
+  border-radius: 12rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.dark .chart-btn {
+  background-color: #009662;
+}
+
+/* 导出Excel按钮样式 */
+.export-btn {
+  flex: 1;
+  max-width: 280rpx;
+  background-color: #0088ff;
+  color: #ffffff;
+  border-radius: 12rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  border: none;
+  margin: 0;
+}

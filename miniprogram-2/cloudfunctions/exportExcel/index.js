@@ -5,7 +5,7 @@ const xlsx = require('node-xlsx');
 const fs = require('fs'); // 云函数内置fs模块，无需额外安装
 const path = require('path'); // 云函数内置path模块
 // 初始化云开发
-cloud.init();
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 // 获取数据库实例
 const db = cloud.database();
 // 定义集合名称
@@ -37,7 +37,7 @@ exports.main = async (event, context) => {
     // 3. 构建Excel数据结构
     const excelData = [];
     // 表头
-    const header = ["姓名", "年龄", "骨龄", "身高(cm)", "体重(kg)", "次数", "持续时长 (min)"];
+    const header = ["姓名", "年龄", "骨龄", "身高(cm)", "体重(kg)", "次数", "持续时长 (min)","压力值(pressure)"];
     excelData.push(header);
 
     // 处理数据行
@@ -54,6 +54,7 @@ exports.main = async (event, context) => {
           row.push(weight || '');
           row.push(record.count || '');
           row.push(record.duration || '');
+          row.push(record.pressure || '无'); // 优化：空值显示“无”
         } else {
           // 后续行：前5列留空
           row.push('');
@@ -62,7 +63,8 @@ exports.main = async (event, context) => {
           row.push('');
           row.push('');
           row.push(record.count || '');
-          row.push(record.duration || '');
+          row.push(record.duration || '小于一分钟');
+          row.push(record.pressure || '无'); 
         }
         excelData.push(row);
       });
@@ -74,8 +76,9 @@ exports.main = async (event, context) => {
         boneAge || '',
         height || '',
         weight || '',
-        "无记录",
-        "无记录"
+        "",
+        "小于一分钟",
+        "无"
       ];
       excelData.push(emptyRow);
     }

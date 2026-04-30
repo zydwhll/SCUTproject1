@@ -12,7 +12,8 @@ Page({
   data: {
     detail: {}, // 患者详情数据
     darkMode: false, // 深色模式标识
-    exportLoading: false // 导出按钮加载状态
+    exportLoading: false, // 导出按钮加载状态
+    showChart: false // 是否显示折线图
   },
 
   /**
@@ -211,5 +212,156 @@ Page({
         console.error('获取临时链接失败：', tempErr);
       }
     });
+  },
+
+  /**
+   * 显示/隐藏折线图
+   */
+  onShowChart: function() {
+    var that = this;
+    var showChart = that.data.showChart;
+    var detail = that.data.detail;
+    
+    if (!detail.timerRecords || detail.timerRecords.length === 0) {
+      wx.showToast({ title: '暂无治疗记录', icon: 'none' });
+      return;
+    }
+
+    that.setData({
+      showChart: !showChart
+    });
+
+    if (!showChart) {
+      setTimeout(function() {
+        that.drawLineChart();
+      }, 200);
+    }
+  },
+
+  /**
+   * 绘制折线图
+   */
+  drawLineChart: function() {
+    var that = this;
+    var detail = that.data.detail;
+    var records = detail.timerRecords;
+    
+    if (!records || records.length === 0) {
+      return;
+    }
+
+    var ctx = wx.createCanvasContext('lineChart');
+    var width = 300;
+    var height = 180;
+    var paddingTop = 30;
+    var paddingRight = 15;
+    var paddingBottom = 40;
+    var paddingLeft = 45;
+    var chartWidth = width - paddingLeft - paddingRight;
+    var chartHeight = height - paddingTop - paddingBottom;
+
+    var dataArray = [];
+    for (var i = 0; i < records.length; i++) {
+      var item = records[i];
+      dataArray.push({
+        x: parseInt(item.count),
+        y: parseFloat(item.duration) * parseFloat(item.pressure)
+      });
+    }
+    
+    dataArray.sort(function(a, b) {
+      return a.x - b.x;
+    });
+
+    var yMax = 0;
+    var yMin = 99999;
+    for (var j = 0; j < dataArray.length; j++) {
+      var val = dataArray[j].y;
+      if (val > yMax) yMax = val;
+      if (val < yMin) yMin = val;
+    }
+    yMax = yMax * 1.1;
+    yMin = yMin * 0.9;
+    var yRange = yMax - yMin;
+    if (yRange <= 0) yRange = 1;
+    var pointCount = dataArray.length;
+
+    ctx.setFillStyle('#ffffff');
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.setStrokeStyle('#ddd');
+    ctx.setLineWidth(1);
+    
+    for (var k = 0; k <= 4; k++) {
+      var gridY = paddingTop + (chartHeight / 4) * k;
+      ctx.beginPath();
+      ctx.moveTo(paddingLeft, gridY);
+      ctx.lineTo(width - paddingRight, gridY);
+      ctx.stroke();
+    }
+
+    for (var m = 0; m <= pointCount; m++) {
+      var gridX = paddingLeft + (chartWidth / pointCount) * m;
+      ctx.beginPath();
+      ctx.moveTo(gridX, paddingTop);
+      ctx.lineTo(gridX, height - paddingBottom);
+      ctx.stroke();
+    }
+
+    ctx.setFillStyle('#666');
+    ctx.setFontSize(8);
+    
+    for (var n = 0; n <= 4; n++) {
+      var yVal = paddingTop + (chartHeight / 4) * n;
+      var value = Math.round(yMax - (yRange / 4) * n);
+      ctx.fillText(value.toString(), 5, yVal + 3);
+    }
+
+    for (var p = 0; p < dataArray.length; p++) {
+      var point = dataArray[p];
+      var xPos = paddingLeft + (chartWidth / pointCount) * p + (chartWidth / pointCount) / 2;
+      ctx.fillText(point.x.toString(), xPos - 6, height - 10);
+    }
+
+    ctx.setFillStyle('#666');
+    ctx.setFontSize(9);
+    ctx.fillText('次数', width / 2 - 12, height - 5);
+    
+    ctx.save();
+    ctx.translate(8, height / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('指标值', -height / 2 + 20, 0);
+    ctx.restore();
+
+    ctx.setStrokeStyle('#0088ff');
+    ctx.setLineWidth(2);
+    ctx.beginPath();
+    
+    for (var q = 0; q < dataArray.length; q++) {
+      var pt = dataArray[q];
+      var xPosition = paddingLeft + (chartWidth / pointCount) * q + (chartWidth / pointCount) / 2;
+      var yPosition = paddingTop + ((yMax - pt.y) / yRange) * chartHeight;
+      
+      if (q === 0) {
+        ctx.moveTo(xPosition, yPosition);
+      } else {
+        ctx.lineTo(xPosition, yPosition);
+      }
+    }
+    ctx.stroke();
+
+    ctx.setFillStyle('#0088ff');
+    for (var r = 0; r < dataArray.length; r++) {
+      var pointItem = dataArray[r];
+      var posX = paddingLeft + (chartWidth / pointCount) * r + (chartWidth / pointCount) / 2;
+      var posY = paddingTop + ((yMax - pointItem.y) / yRange) * chartHeight;
+      
+      ctx.beginPath();
+      ctx.arc(posX, posY, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.draw();
   }
+
 });

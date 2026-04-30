@@ -2,6 +2,9 @@
   "description": "压力传感器小程序",
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
+  "env": {
+    "cloud": "cloud1-1g6svufkdba1d925"
+  },
   "packOptions": {
     "ignore": [],
     "include": []
@@ -50,7 +53,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.14.2",
-  "appid": "wx0e2ea34614186df6",
+  "appid": "wx0f14021e966fb697",
   "projectname": "pressure-sensor",
   "isGameTourist": false,
   "condition": {

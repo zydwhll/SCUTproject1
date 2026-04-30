@@ -35,12 +35,21 @@
         <view class="timeline-count">第{{item.count}}次治疗</view>
         <view class="timeline-time">{{item.createTime}}</view>
         <view class="timeline-duration">持续时长：{{item.duration}}分钟</view>
+        <view class="timeline-pressure">压力值：{{item.pressure}}</view>
       </view>
     </view>
   </view>
   <text class="history-empty" wx:if="{{!detail.timerRecords || detail.timerRecords.length === 0}}">暂无治疗记录</text>
 
 
- <!-- 导出Excel按钮 -->
- <button class="export-btn" bindtap="onExportExcel" loading="{{exportLoading}}">导出为Excel</button>
+ <!-- 折线图展示区域 -->
+<view class="chart-section" wx:if="{{showChart}}">
+  <canvas canvas-id="lineChart" class="chart-canvas"></canvas>
+</view>
+
+<!-- 操作按钮区域 -->
+<view class="btn-group">
+  <button class="chart-btn" bindtap="onShowChart">{{showChart ? '隐藏折线图' : '折线图'}}</button>
+  <button class="export-btn" bindtap="onExportExcel" loading="{{exportLoading}}">导出为Excel</button>
+</view>
 </view>
